@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instituto Eurico França | Hipnoterapia Clínica</title>
+  <meta name="description" content="Hipnoterapia clínica com atendimento humanizado para ansiedade, medos, traumas, sono, autoestima e padrões emocionais repetitivos." />
+  <meta name="theme-color" content="#0284c7" />
+
+  <meta property="og:title" content="Instituto Eurico França | Hipnoterapia Clínica" />
+  <meta property="og:description" content="Um caminho terapêutico seguro, humano e direcionado para ressignificar padrões emocionais." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/banner-desktop.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#e0f2fe',
+              soft: '#f0f9ff',
+              DEFAULT: '#0284c7',
+              dark: '#0f172a',
+              accent: '#38bdf8',
+              calm: '#0f766e',
+              gold: '#d89d6a'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            soft: '0 20px 70px rgba(15, 23, 42, .12)',
+            glow: '0 18px 45px rgba(2, 132, 199, .24)'
+          },
+          borderRadius: {
+            hero: '2rem'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #f8fafc; }
+    .glass-effect { background: rgba(255,255,255,.90); backdrop-filter: blur(14px); }
+    .hero-orb {
+      position: absolute; inset: auto; border-radius: 999px; filter: blur(54px); opacity: .36; pointer-events: none;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #0f172a 0%, #0284c7 52%, #0f766e 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,.64); }
+      70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+    .whatsapp-float { animation: pulse-green 2s infinite; }
+    .image-mask { mask-image: linear-gradient(180deg, #000 70%, rgba(0,0,0,.78)); }
+    .card-hover { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 24px 70px rgba(15,23,42,.12); border-color: rgba(2,132,199,.24); }
+    .aspect-video { aspect-ratio: 16 / 9; }
+    .noise {
+      background-image: radial-gradient(rgba(2,132,199,.10) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    /* Imagens com borda infinita: sem linhas duras, com fusão suave no degradê do site */
+    .infinite-image {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      box-shadow: none;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(56,189,248,.34), transparent 34%),
+        radial-gradient(circle at 82% 26%, rgba(15,118,110,.22), transparent 38%),
+        linear-gradient(135deg, #e0f2fe 0%, #ffffff 42%, #e8f7f4 100%);
+      isolation: isolate;
+    }
+    .infinite-image::before {
+      content: "";
+      position: absolute;
+      inset: -24px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(2,132,199,.32), transparent 36%),
+        radial-gradient(circle at 100% 100%, rgba(15,118,110,.25), transparent 42%);
+      filter: blur(24px);
+      opacity: .95;
+      z-index: 0;
+    }
+    .infinite-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      box-shadow:
+        inset 0 0 42px rgba(224,242,254,.95),
+        inset 0 0 88px rgba(255,255,255,.74),
+        inset 0 0 140px rgba(2,132,199,.18),
+        inset 0 -70px 110px rgba(15,23,42,.12);
+    }
+    .infinite-image img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+    /* Evita corte no banner principal e na foto do hipnoterapeuta */
+    .hero-banner img,
+    .therapist-photo img {
+      width: 100%;
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+    }
+    .hero-banner {
+      line-height: 0;
+      overflow: visible !important;
+    }
+    .hero-banner picture {
+      display: block;
+      width: 100%;
+      height: auto;
+      line-height: 0;
+      overflow: visible !important;
+    }
+    .hero-banner img {
+      display: block;
+      width: 100%;
+      height: auto !important;
+      min-height: 0 !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      transform: none !important;
+    }
+    .video-thumb-safe {
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+    }
+    .video-thumb-safe img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain !important;
+      object-position: center center !important;
+      transform: none !important;
+      background: transparent;
+    }
+    .therapist-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .therapist-photo::after {
+      box-shadow:
+        inset 0 0 34px rgba(15,23,42,.72),
+        inset 0 0 76px rgba(2,132,199,.16),
+        inset 0 0 118px rgba(15,118,110,.14);
+    }
+    .infinite-dark {
+      background:
+        radial-gradient(circle at 18% 20%, rgba(56,189,248,.30), transparent 34%),
+        radial-gradient(circle at 88% 72%, rgba(15,118,110,.28), transparent 42%),
+        linear-gradient(135deg, #0f172a 0%, #082f49 52%, #0f766e 100%);
+    }
+    .infinite-dark::after {
+      box-shadow:
+        inset 0 0 42px rgba(15,23,42,.92),
+        inset 0 0 92px rgba(2,132,199,.24),
+        inset 0 0 150px rgba(15,118,110,.20);
+    }
+    .image-card-soft {
+      background: linear-gradient(135deg, rgba(224,242,254,.78), rgba(255,255,255,.94), rgba(15,118,110,.10));
+      border: 0;
+      box-shadow: 0 20px 70px rgba(15,23,42,.10);
+    }
+
+    /* Ícones padronizados com a linguagem visual do banner principal */
+    .banner-icon-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid rgba(15, 23, 42, .08);
+    }
+    .banner-icon-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 32% 22%, rgba(56, 189, 248, .42), transparent 38%),
+        linear-gradient(145deg, #042f5f 0%, #002b5c 54%, #005f64 100%);
+      box-shadow: 0 18px 42px rgba(0, 43, 92, .22), inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+    .banner-icon {
+      width: 42px;
+      height: 42px;
+      stroke: currentColor;
+      stroke-width: 1.85;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 7px rgba(56, 189, 248, .35));
+    }
+    .banner-icon-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      color: #0f766e;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: .75rem;
+    }
+
+
+    /* Cabeçalho: marca totalmente à esquerda, logo integrado ao banner e menu alinhado ao início do texto do banner */
+    .site-header { overflow: visible; }
+    .header-shell {
+      width: 100%;
+      max-width: none;
+      display: grid;
+      grid-template-columns: max-content 1fr max-content;
+      align-items: center;
+      gap: .55rem;
+      overflow: visible;
+    }
+    .header-brand-link {
+      justify-self: start;
+      margin-left: 0;
+      overflow: visible;
+      position: relative;
+      z-index: 55;
+    }
+    .header-logo-frame {
+      width: 78px;
+      height: 78px;
+      margin-top: -10px;
+      margin-bottom: -30px;
+      position: relative;
+      z-index: 55;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,.78) 0%, rgba(224,242,254,.48) 42%, rgba(56,189,248,.18) 68%, rgba(15,118,110,.12) 100%);
+      backdrop-filter: blur(8px) saturate(1.12);
+      -webkit-backdrop-filter: blur(8px) saturate(1.12);
+      isolation: isolate;
+      box-shadow: 0 14px 34px rgba(2,132,199,.16), 0 0 0 1px rgba(255,255,255,.42) inset;
+    }
+    .header-logo-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 3px;
+      background: conic-gradient(from 180deg, rgba(2,132,199,.95), rgba(56,189,248,.82), rgba(15,118,110,.88), rgba(224,242,254,.92), rgba(2,132,199,.95));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .header-logo-frame::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.28) 0%, rgba(56,189,248,.16) 42%, rgba(15,118,110,.10) 72%, rgba(15,23,42,0) 100%);
+      filter: blur(6px);
+      opacity: .72;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .header-logo-mark {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      position: relative;
+      z-index: 2;
+      object-fit: contain;
+      transform: scale(1.18);
+      transform-origin: center;
+      filter: drop-shadow(0 10px 18px rgba(15,23,42,.18));
+    }
+    .header-brand-link:hover .header-logo-mark {
+      transform: scale(1.22);
+    }
+    .header-brand-text { white-space: nowrap; }
+    .header-nav-aligned {
+      justify-self: start;
+      margin-left: clamp(.65rem, 1.2vw, 1.45rem);
+    }
+    @keyframes cta-header-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 14px 32px rgba(2,132,199,.26), 0 0 0 0 rgba(37,211,102,.42); }
+      50% { transform: scale(1.055); box-shadow: 0 18px 44px rgba(2,132,199,.34), 0 0 0 9px rgba(37,211,102,0); }
+    }
+    .header-cta-pulse {
+      animation: cta-header-pulse 1.9s ease-in-out infinite;
+      transform-origin: center;
+      will-change: transform, box-shadow;
+    }
+    @media (min-width: 768px) {
+      .header-logo-frame {
+        width: 112px;
+        height: 112px;
+        margin-top: -18px;
+        margin-bottom: -58px;
+      }
+      .header-logo-mark {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        transform: scale(1.20);
+      }
+      .header-brand-link:hover .header-logo-mark {
+        transform: scale(1.24);
+      }
+    }
+    @media (min-width: 1280px) {
+      .header-nav-aligned {
+        margin-left: clamp(.9rem, 1.8vw, 2rem);
+      }
+    }
+    @media (max-width: 1380px) {
+      .header-nav-aligned { font-size: .78rem; }
+      .header-nav-aligned a { padding-left: .45rem; padding-right: .45rem; }
+    }
+
+    /* Seção de avaliações Google */
+    .google-rating-card {
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(240,249,255,.92));
+      border: 1px solid rgba(2,132,199,.12);
+      box-shadow: 0 22px 70px rgba(15,23,42,.10);
+    }
+    .review-card {
+      background: #ffffff;
+      border: 1px solid rgba(15,23,42,.08);
+      box-shadow: 0 18px 48px rgba(15,23,42,.08);
+    }
+    .review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: white;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+    }
+    .stars { color: #fbbc04; letter-spacing: .08em; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "institutoeuricofranca",
+    "url": "https://institutoeuricofranca.com.br/",
+    "sameAs": [
+      "https://www.instagram.com/euricofranca/",
+      "https://www.youtube.com/@institutoeuricofranca",
+      "https://share.google/1lcah9z6ma3azPe02"
+    ],
+    "areaServed": "Diadema, São Paulo",
+    "medicalSpecialty": "Hipnoterapia"
+  }
+  </script>
+</head>
+<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
+
+  <a id="whatsappFloat" href="https://wa.me/5511973102446?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20institutoeuricofranca%20e%20gostaria%20de%20saber%20mais%20sobre%20hipnoterapia." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" class="whatsapp-float fixed bottom-5 right-5 md:bottom-7 md:right-7 bg-[#25D366] text-white rounded-full w-16 h-16 flex items-center justify-center text-4xl shadow-2xl hover:scale-105 hover:bg-green-600 transition-all z-50">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <header class="site-header fixed w-full top-0 z-40 glass-effect shadow-sm border-b border-slate-200/70 transition-all">
+    <div class="header-shell px-3 md:px-5 py-1 md:py-1.5">
+      <a href="#inicio" class="header-brand-link flex items-center gap-2 md:gap-3 group shrink-0">
+        <span class="header-logo-frame">
+          <img src="assets/img/logo-instituto.svg" onerror="this.onerror=null;this.src='assets/img/logo-instituto.png';" alt="Instituto Eurico França" class="header-logo-mark" />
+        </span>
+        <div class="leading-tight min-w-max">
+          <div class="header-brand-text text-sm md:text-lg font-serif font-bold text-brand-dark tracking-tight">Instituto Eurico França</div>
+          <div class="header-brand-text text-[9px] md:text-[11px] text-slate-500 font-semibold">Hipnoterapia Clínica</div>
+        </div>
+      </a>
+
+      <nav class="header-nav-aligned hidden xl:flex items-center space-x-1 font-semibold text-sm text-gray-600 whitespace-nowrap">
+        <a href="#instituto" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Instituto</a>
+        <a href="#processo" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Como funciona</a>
+        <a href="#indicacoes" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Quando buscar</a>
+        <a href="#sobre" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Especialista</a>
+        <a href="#conteudos" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Conteúdos</a>
+        <a href="#avaliacoes" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Avaliações</a>
+        <a href="#faq" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition">Dúvidas</a>
+        <a href="https://share.google/1lcah9z6ma3azPe02" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-full hover:bg-brand-light hover:text-brand transition inline-flex items-center gap-1.5"><i class="fa-solid fa-location-dot"></i> Localização</a>
+      </nav>
+
+      <a href="#contato" class="header-cta-pulse hidden md:inline-flex bg-brand text-white px-5 py-2 rounded-full font-extrabold text-sm hover:bg-blue-700 transition shadow-glow items-center gap-2 whitespace-nowrap shrink-0">
+        <i class="fab fa-whatsapp"></i> Agendar avaliação
+      </a>
+    </div>
+  </header>
+
+  <section id="inicio" class="relative pt-12 md:pt-14 pb-0 md:pb-6 bg-gradient-to-br from-[#e0f2fe] via-white to-[#e8f7f4] overflow-hidden">
+    <h1 class="sr-only">Instituto Eurico França - Hipnoterapia e Desenvolvimento Pessoal</h1>
+
+    <div class="max-w-[1800px] mx-auto px-0 md:px-0 relative z-10">
+      <a href="https://wa.me/5511973102446?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Instituto%20Eurico%20Fran%C3%A7a%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Agendar avaliação pelo WhatsApp" class="block group infinite-image hero-banner">
+        <picture>
+          <source media="(max-width: 767px)" srcset="assets/img/banner-mobile.png" />
+          <source media="(min-width: 768px)" srcset="assets/img/banner-desktop.png" />
+          <img src="assets/img/banner-desktop.png" alt="Sua mente pode respirar melhor. Hipnoterapia com abordagem acolhedora para equilíbrio emocional." class="w-full h-auto bg-transparent object-contain" loading="eager" fetchpriority="high" />
+        </picture>
+      </a>
+
+      <div class="md:hidden px-5 pt-5">
+        <a href="https://wa.me/5511973102446?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Instituto%20Eurico%20Fran%C3%A7a%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener" class="w-full bg-[#006b60] text-white px-6 py-4 rounded-full font-extrabold text-lg hover:bg-[#00574e] transition shadow-xl inline-flex items-center justify-center gap-3">
+          <i class="fab fa-whatsapp text-2xl"></i> Agende sua avaliação
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="instituto" class="py-20 bg-white relative overflow-hidden">
+    <div class="hero-orb w-80 h-80 bg-brand-accent/25 -top-28 -left-20"></div>
+    <div class="hero-orb w-96 h-96 bg-brand-calm/20 bottom-0 right-0"></div>
+
+    <div class="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-brand font-extrabold tracking-wider uppercase text-sm">Sobre o Instituto</span>
+          <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mt-3 mb-6 leading-tight">Um espaço de escuta, cuidado e desenvolvimento pessoal.</h2>
+          <p class="text-lg text-gray-600 leading-relaxed mb-6">No Instituto Eurico França, o atendimento une experiência clínica, acolhimento e práticas terapêuticas integrativas para ajudar cada pessoa a compreender melhor seus desafios emocionais e buscar mais equilíbrio na rotina.</p>
+          <p class="text-gray-600 leading-relaxed mb-8">Com mais de 23 anos de experiência, o Instituto atua com Hipnoterapia, Psicanálise, Psicoterapia, PNL, Hipnose Ericksoniana e Reiki, sempre com uma condução humanizada, respeitosa e individualizada.</p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mb-8">
+            <div class="bg-brand-soft border border-sky-100 rounded-3xl p-5">
+              <div class="w-11 h-11 rounded-full bg-brand text-white grid place-items-center mb-4"><i class="fa-solid fa-user-doctor"></i></div>
+              <h3 class="font-extrabold text-brand-dark mb-2">Atendimento especializado</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Condução profissional para entender a história, o momento e as necessidades de cada pessoa.</p>
+            </div>
+            <div class="bg-[#f0fdfa] border border-teal-100 rounded-3xl p-5">
+              <div class="w-11 h-11 rounded-full bg-brand-calm text-white grid place-items-center mb-4"><i class="fa-solid fa-hands-holding-circle"></i></div>
+              <h3 class="font-extrabold text-brand-dark mb-2">Cuidado integrativo</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Técnicas terapêuticas combinadas para apoiar clareza emocional, autoconhecimento e bem-estar.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="https://wa.me/5511973102446?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Instituto%20Eurico%20Fran%C3%A7a%20e%20gostaria%20de%20entender%20qual%20terapia%20%C3%A9%20mais%20indicada%20para%20mim." target="_blank" rel="noopener" class="bg-[#006b60] text-white px-7 py-4 rounded-full font-extrabold hover:bg-[#00574e] transition shadow-xl inline-flex items-center justify-center gap-3">
+              <i class="fab fa-whatsapp text-xl"></i> Conversar com o Instituto
+            </a>
+            <a href="https://share.google/1lcah9z6ma3azPe02" target="_blank" rel="noopener" class="bg-white border border-slate-200 text-brand-dark px-7 py-4 rounded-full font-extrabold hover:bg-gray-50 transition shadow-lg inline-flex items-center justify-center gap-3">
+              <i class="fa-solid fa-location-dot text-brand"></i> Ver localização
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -inset-5 bg-gradient-to-br from-brand-light via-white to-[#e8f7f4] rounded-[2rem] blur-2xl opacity-90"></div>
+          <div class="relative infinite-image rounded-[2rem] overflow-hidden shadow-soft">
+            <img src="assets/img/sessao-hipnoterapia.png" alt="Atendimento terapêutico no Instituto Eurico França" class="w-full h-auto object-contain" loading="lazy" />
+          </div>
+          <div class="relative -mt-8 mx-5 md:mx-10 bg-white/95 backdrop-blur rounded-3xl shadow-soft border border-slate-100 p-6">
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div class="text-2xl font-extrabold text-brand-dark">23+</div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wide">anos</p>
+              </div>
+              <div>
+                <div class="text-2xl font-extrabold text-brand-dark">5,0</div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wide">Google</p>
+              </div>
+              <div>
+                <div class="text-2xl font-extrabold text-brand-dark">85</div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wide">avaliações</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mt-14">
+        <article class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+          <span class="inline-flex w-12 h-12 rounded-full bg-brand-dark text-white items-center justify-center mb-4"><i class="fa-solid fa-brain"></i></span>
+          <h3 class="text-xl font-extrabold text-brand-dark mb-2">Hipnoterapia e Hipnose Ericksoniana</h3>
+          <p class="text-gray-600 leading-relaxed">Abordagem direcionada para trabalhar padrões emocionais, memórias difíceis, bloqueios e respostas automáticas.</p>
+        </article>
+        <article class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+          <span class="inline-flex w-12 h-12 rounded-full bg-brand text-white items-center justify-center mb-4"><i class="fa-solid fa-comments"></i></span>
+          <h3 class="text-xl font-extrabold text-brand-dark mb-2">Psicanálise, Psicoterapia e PNL</h3>
+          <p class="text-gray-600 leading-relaxed">Recursos para ampliar consciência, reorganizar percepções e fortalecer novas formas de lidar com a vida.</p>
+        </article>
+        <article class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm">
+          <span class="inline-flex w-12 h-12 rounded-full bg-brand-calm text-white items-center justify-center mb-4"><i class="fa-solid fa-hand-holding-heart"></i></span>
+          <h3 class="text-xl font-extrabold text-brand-dark mb-2">Reiki e terapias integrativas</h3>
+          <p class="text-gray-600 leading-relaxed">Sessões voltadas ao equilíbrio físico e emocional, com acolhimento, presença e respeito ao processo individual.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="indicacoes" class="py-20 bg-gradient-to-br from-[#f8fafc] via-white to-[#e8f7f4]">
+    <div class="max-w-7xl mx-auto px-5 md:px-6">
+      <div class="text-center mb-14">
+        <span class="text-brand font-extrabold tracking-wider uppercase text-sm">Quando a hipnoterapia pode ajudar</span>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mt-3 mb-5">Para quem sente que está preso no mesmo padrão emocional.</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">Algumas situações podem ser trabalhadas em um processo terapêutico individual, sempre considerando a história, os limites e as necessidades de cada pessoa.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="card-hover banner-icon-card p-7 rounded-3xl">
+          <div class="banner-icon-wrap" aria-hidden="true">
+            <svg class="banner-icon" viewBox="0 0 64 64">
+              <path d="M18 48V30c0-11 8-20 19-20 9 0 17 7 17 16 0 6-3 10-7 13v9" />
+              <path d="M18 31h-5l5-8" />
+              <path d="M28 24c2-4 8-4 10 0 3-2 8 0 8 4 0 3-2 5-5 6 1 4-2 8-6 8-3 0-5-1-6-3-4 1-8-2-8-6 0-3 2-5 4-6 0-1 1-2 3-3z" />
+              <path d="M30 27l6 6m0-6l-6 6" />
+            </svg>
+          </div>
+          <span class="banner-icon-label">Ansiedade</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Ansiedade e tensão constante</h3>
+          <p class="text-gray-600 leading-relaxed">Para quem sente a mente acelerada, dificuldade de relaxar e sensação de alerta mesmo em momentos comuns.</p>
+        </article>
+
+        <article class="card-hover banner-icon-card p-7 rounded-3xl">
+          <div class="banner-icon-wrap" aria-hidden="true">
+            <svg class="banner-icon" viewBox="0 0 64 64">
+              <path d="M42 10c-10 2-18 11-18 22s8 20 18 22c-3 2-7 3-11 3-14 0-25-11-25-25S17 7 31 7c4 0 8 1 11 3z" />
+              <path d="M45 22h8l-8 10h8" />
+              <path d="M40 35h6l-6 8h6" />
+            </svg>
+          </div>
+          <span class="banner-icon-label">Insônia</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Sono e sobrecarga mental</h3>
+          <p class="text-gray-600 leading-relaxed">Para pessoas que chegam ao fim do dia cansadas, mas não conseguem desacelerar internamente.</p>
+        </article>
+
+        <article class="card-hover banner-icon-card p-7 rounded-3xl">
+          <div class="banner-icon-wrap" aria-hidden="true">
+            <svg class="banner-icon" viewBox="0 0 64 64">
+              <circle cx="32" cy="17" r="6" />
+              <path d="M32 24v16" />
+              <path d="M22 30h20" />
+              <path d="M25 54l7-14 7 14" />
+              <path d="M32 5V2M32 63v-3M14 17l-3-3M50 17l3-3M12 34H7M57 34h-5" />
+              <path d="M20 43l-5 5M44 43l5 5" />
+            </svg>
+          </div>
+          <span class="banner-icon-label">Fobias</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Medos, fobias e travas</h3>
+          <p class="text-gray-600 leading-relaxed">Para investigar respostas automáticas que limitam a rotina, decisões e relacionamentos.</p>
+        </article>
+
+        <article class="card-hover banner-icon-card p-7 rounded-3xl">
+          <div class="banner-icon-wrap" aria-hidden="true">
+            <svg class="banner-icon" viewBox="0 0 64 64">
+              <circle cx="29" cy="18" r="8" />
+              <path d="M15 53c2-12 8-18 18-18 5 0 9 1 12 4" />
+              <path d="M45 47l-8-8c-4-4 2-12 8-6 6-6 12 2 8 6l-8 8z" />
+              <path d="M20 25c3 4 12 4 16 0" />
+            </svg>
+          </div>
+          <span class="banner-icon-label">Baixa autoestima</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Autoestima e autoconfiança</h3>
+          <p class="text-gray-600 leading-relaxed">Para trabalhar crenças internas, autocrítica excessiva e dificuldade de se posicionar.</p>
+        </article>
+
+        <article class="card-hover banner-icon-card p-7 rounded-3xl">
+          <div class="banner-icon-wrap" aria-hidden="true">
+            <svg class="banner-icon" viewBox="0 0 64 64">
+              <path d="M32 8c-9 0-16 7-16 16 0 6 3 11 8 14v8h16v-8c5-3 8-8 8-14 0-9-7-16-16-16z" />
+              <path d="M24 46h16M26 54h12" />
+              <path d="M24 24c2-5 9-5 11 0 4-3 10 0 10 5 0 4-3 7-7 7H26c-4 0-7-3-7-7 0-3 2-5 5-5z" />
+              <path d="M31 17v-5M37 19l4-4M25 19l-4-4" />
+            </svg>
+          </div>
+          <span class="banner-icon-label">Compulsões</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Padrões repetitivos</h3>
+          <p class="text-gray-600 leading-relaxed">Para quem percebe comportamentos que se repetem mesmo quando racionalmente gostaria de agir diferente.</p>
+        </article>
+
+        <article class="card-hover banner-icon-card p-7 rounded-3xl">
+          <div class="banner-icon-wrap" aria-hidden="true">
+            <svg class="banner-icon" viewBox="0 0 64 64">
+              <circle cx="22" cy="24" r="7" />
+              <circle cx="44" cy="24" r="7" />
+              <path d="M10 54c1-11 6-17 14-17 5 0 8 2 10 5" />
+              <path d="M54 54c-1-11-6-17-14-17-5 0-8 2-10 5" />
+              <path d="M32 35l-6-6c-3-3 1-8 6-4 5-4 9 1 6 4l-6 6z" />
+            </svg>
+          </div>
+          <span class="banner-icon-label">Relacionamentos</span>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">Relacionamentos e vínculos</h3>
+          <p class="text-gray-600 leading-relaxed">Para compreender emoções, inseguranças e padrões que interferem na forma de se relacionar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo" class="py-20 bg-gradient-to-br from-brand-light to-white noise">
+    <div class="max-w-7xl mx-auto px-5 md:px-6">
+      <div class="text-center mb-16">
+        <span class="text-brand font-extrabold tracking-wider uppercase text-sm">Como funciona o atendimento</span>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mt-3 mb-5">Um processo claro: acolher, compreender e ressignificar.</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">Cada etapa respeita o ritmo do paciente e busca tornar o atendimento mais seguro, humano e compreensível.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 bg-white/90 rounded-3xl text-center hover:shadow-xl transition duration-300 border border-white">
+          <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-glow font-black"><i class="fa-solid fa-comments"></i></div>
+          <h3 class="text-2xl font-bold text-brand-dark mb-3">Acolher a queixa</h3>
+          <p class="text-gray-600 leading-relaxed">O primeiro passo é compreender a história, os gatilhos, o contexto emocional e o que a pessoa deseja trabalhar.</p>
+        </div>
+        <div class="p-8 bg-white/95 rounded-3xl text-center hover:shadow-xl transition duration-300 transform md:-translate-y-4 border border-sky-100 shadow-soft">
+          <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-glow font-black"><i class="fa-solid fa-brain"></i></div>
+          <h3 class="text-2xl font-bold text-brand-dark mb-3">Trabalhar emoções</h3>
+          <p class="text-gray-600 leading-relaxed">A hipnose pode ser usada como recurso terapêutico para favorecer foco, relaxamento e novas percepções internas.</p>
+          <span class="inline-block mt-5 text-xs font-extrabold text-brand bg-brand-light rounded-full px-4 py-2">Etapa terapêutica</span>
+        </div>
+        <div class="p-8 bg-white/90 rounded-3xl text-center hover:shadow-xl transition duration-300 border border-white">
+          <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-glow font-black"><i class="fa-solid fa-seedling"></i></div>
+          <h3 class="text-2xl font-bold text-brand-dark mb-3">Fortalecer recursos internos</h3>
+          <p class="text-gray-600 leading-relaxed">Após a sessão, o foco é apoiar novos entendimentos e orientar o paciente para sustentar avanços no cotidiano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="py-20 bg-brand-dark text-white overflow-hidden relative">
+    <div class="hero-orb w-96 h-96 bg-brand opacity-30 -bottom-28 -left-28"></div>
+    <div class="max-w-7xl mx-auto px-5 md:px-6 grid md:grid-cols-2 items-center gap-12 relative z-10">
+      <div class="relative order-2 md:order-1 infinite-image infinite-dark therapist-photo">
+        <img src="assets/img/eurico-franca-retrato.png" alt="Eurico França" class="w-full h-auto object-contain" />
+        <div class="absolute -bottom-6 -right-3 md:-right-6 bg-white text-brand-dark p-5 rounded-3xl shadow-soft max-w-[280px]">
+          <div class="flex items-center gap-3 mb-2">
+            <i class="fa-solid fa-user-doctor text-brand text-2xl"></i>
+            <strong>Atendimento humano</strong>
+          </div>
+          <p class="text-sm text-slate-600 m-0 leading-relaxed">Cuidado emocional com escuta, responsabilidade e respeito pela história de cada pessoa.</p>
+        </div>
+      </div>
+      <div class="order-1 md:order-2">
+        <span class="text-brand-accent font-extrabold tracking-wider uppercase text-sm">Especialista responsável</span>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold my-5">Eurico França</h2>
+        <p class="text-gray-300 mb-6 leading-relaxed text-lg">O Instituto Eurico França atua com hipnoterapia e cuidado emocional, conduzindo o paciente com acolhimento, clareza e responsabilidade.</p>
+        <p class="text-gray-300 mb-8 leading-relaxed">A proposta é oferecer uma conversa inicial segura para entender a queixa, orientar o melhor caminho e apresentar como o processo pode funcionar para cada caso.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://www.instagram.com/euricofranca/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white px-6 py-4 rounded-full font-bold hover:opacity-90 transition shadow-lg">
+            <i class="fab fa-instagram text-xl"></i> Instagram oficial
+          </a>
+          <a href="https://www.youtube.com/@institutoeuricofranca" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-white/10 border border-white/15 text-white px-6 py-4 rounded-full font-bold hover:bg-white/15 transition shadow-lg">
+            <i class="fab fa-youtube text-xl"></i> Canal no YouTube
+          </a>
+          <a href="https://share.google/1lcah9z6ma3azPe02" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-white/10 border border-white/15 text-white px-6 py-4 rounded-full font-bold hover:bg-white/15 transition shadow-lg">
+            <i class="fa-solid fa-location-dot text-xl text-brand-accent"></i> Ver localização
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="conteudos" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 text-center">
+      <span class="text-brand font-extrabold tracking-wider uppercase text-sm">Conteúdos do Instituto</span>
+      <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mt-3 mb-5">Conheça mais sobre hipnoterapia antes de iniciar uma conversa.</h2>
+      <p class="text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">Os vídeos ajudam a entender melhor o processo, esclarecer dúvidas comuns e aproximar quem ainda está buscando orientação.</p>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-12 text-left">
+        <a href="https://www.youtube.com/watch?v=pHdGxaku3IM" target="_blank" rel="noopener" class="group image-card-soft p-4 rounded-3xl card-hover block">
+          <div class="video-thumb-safe infinite-image relative">
+            <img src="assets/img/como-hipnoterapia-ajuda.png" alt="Vídeo do Instituto Eurico França" class="w-full h-full object-contain" />
+            <div class="absolute inset-0 grid place-items-center bg-black/20"><i class="fab fa-youtube text-red-600 text-5xl drop-shadow-lg"></i></div>
+          </div>
+          <h3 class="mt-5 font-bold text-brand-dark text-lg">Hipnoterapia na prática</h3>
+          <p class="text-gray-600 text-sm mt-2 leading-relaxed">Conteúdo para explicar o processo e acolher quem ainda tem dúvidas.</p>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=svEcJqYPdNI" target="_blank" rel="noopener" class="group image-card-soft p-4 rounded-3xl card-hover block">
+          <div class="video-thumb-safe infinite-image relative">
+            <img src="assets/img/eurico-franca-retrato.png" alt="Vídeo do Instituto Eurico França" class="w-full h-full object-contain" />
+            <div class="absolute inset-0 grid place-items-center bg-black/20"><i class="fab fa-youtube text-red-600 text-5xl drop-shadow-lg"></i></div>
+          </div>
+          <h3 class="mt-5 font-bold text-brand-dark text-lg">Ansiedade e emoções</h3>
+          <p class="text-gray-600 text-sm mt-2 leading-relaxed">Uma conversa sobre sinais emocionais, tensão interna e caminhos de cuidado.</p>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=Y0DxW1K-ua8" target="_blank" rel="noopener" class="group image-card-soft p-4 rounded-3xl card-hover block">
+          <div class="video-thumb-safe infinite-image relative">
+            <img src="assets/img/sessao-hipnoterapia.png" alt="Vídeo do Instituto Eurico França" class="w-full h-full object-contain" />
+            <div class="absolute inset-0 grid place-items-center bg-black/20"><i class="fab fa-youtube text-red-600 text-5xl drop-shadow-lg"></i></div>
+          </div>
+          <h3 class="mt-5 font-bold text-brand-dark text-lg">Autoconhecimento</h3>
+          <p class="text-gray-600 text-sm mt-2 leading-relaxed">Reflexões para quem deseja compreender melhor emoções, escolhas e comportamentos.</p>
+        </a>
+      </div>
+
+      <a href="https://www.youtube.com/@institutoeuricofranca" target="_blank" rel="noopener" class="text-brand font-bold hover:underline text-lg inline-flex items-center gap-2">
+        Ver mais conteúdos no canal <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+
+  <section id="avaliacoes" class="py-20 bg-gradient-to-br from-[#f8fafc] via-white to-[#e8f7f4] relative overflow-hidden">
+    <div class="hero-orb w-96 h-96 bg-brand-accent/30 -top-32 -left-20"></div>
+    <div class="hero-orb w-80 h-80 bg-brand-calm/20 bottom-0 right-0"></div>
+
+    <div class="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
+      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-center">
+        <div>
+          <span class="text-brand font-extrabold tracking-wider uppercase text-sm">Avaliações no Google</span>
+          <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mt-3 mb-5">Quem já passou pelo Instituto compartilha sua experiência.</h2>
+          <p class="text-gray-600 text-lg leading-relaxed mb-8">As avaliações reforçam pontos importantes do atendimento: acolhimento, profissionalismo, atenção e cuidado durante o processo terapêutico.</p>
+
+          <div class="google-rating-card rounded-[2rem] p-6 md:p-8 max-w-xl">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-white shadow-lg grid place-items-center shrink-0">
+                <i class="fa-brands fa-google text-3xl text-brand"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-extrabold text-brand-dark leading-tight">Instituto Eurico Franca de Hipnose Clínica e Terapêutica</h3>
+                <div class="mt-3 flex flex-wrap items-center gap-2 text-lg">
+                  <strong class="text-brand-dark">5,0</strong>
+                  <span class="stars" aria-label="5 estrelas">★★★★★</span>
+                  <span class="text-brand font-bold">85 avaliações no Google</span>
+                </div>
+                <a href="https://share.google/1lcah9z6ma3azPe02" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-3 bg-brand-dark text-white px-6 py-3 rounded-full font-extrabold hover:bg-slate-900 transition shadow-lg">
+                  <i class="fa-solid fa-map-location-dot text-brand-accent"></i> Ver avaliações no Google
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <article class="review-card rounded-3xl p-6 card-hover md:col-span-2">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="review-avatar bg-[#673ab7]">S</div>
+                <div>
+                  <h3 class="font-extrabold text-brand-dark">SidraC Fragoso</h3>
+                  <p class="text-sm text-gray-500">Guia local · avaliação recente</p>
+                </div>
+              </div>
+              <span class="stars text-sm">★★★★★</span>
+            </div>
+            <p class="text-gray-700 leading-relaxed">“Ótimo atendimento, excelente profissional. Saí do instituto muito satisfeito com as sessões que fiz de hipnose e apometria. Super indico para as pessoas que têm medo de hipnose como eu também tinha.”</p>
+          </article>
+
+          <article class="review-card rounded-3xl p-6 card-hover">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="review-avatar bg-[#d84315]">C</div>
+                <div>
+                  <h3 class="font-extrabold text-brand-dark">Carlos Alberto</h3>
+                  <p class="text-sm text-gray-500">Avaliação no Google</p>
+                </div>
+              </div>
+              <span class="stars text-sm">★★★★★</span>
+            </div>
+            <p class="text-gray-700 leading-relaxed">“Atendimento super profissional, qualificado e atencioso. Maravilhoso. Tudo de bom! Super recomendo!”</p>
+          </article>
+
+          <article class="review-card rounded-3xl p-6 card-hover">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="review-avatar bg-[#00acc1]">T</div>
+                <div>
+                  <h3 class="font-extrabold text-brand-dark">Thais Rodrigues Ferreira</h3>
+                  <p class="text-sm text-gray-500">Avaliação no Google</p>
+                </div>
+              </div>
+              <span class="stars text-sm">★★★★★</span>
+            </div>
+            <p class="text-gray-700 leading-relaxed">“Minha experiência tem sido excelente e tem sido um verdadeiro divisor de águas para mim. Desde que conheci o Dr. Eurico, sinto uma melhora enorme no meu bem-estar.”</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-5 md:px-6">
+      <div class="text-center mb-12">
+        <span class="text-brand font-extrabold tracking-wider uppercase text-sm">Dúvidas frequentes</span>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mt-3 mb-5">Antes de falar no WhatsApp</h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-gray-50 border border-slate-200 rounded-3xl p-6 open:shadow-soft transition">
+          <summary class="cursor-pointer font-bold text-brand-dark text-lg flex justify-between gap-4 list-none">Hipnoterapia é perda de controle?<i class="fa-solid fa-chevron-down group-open:rotate-180 transition"></i></summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">Não. A hipnoterapia é um estado de foco e relaxamento conduzido de forma terapêutica. O paciente permanece participante do processo.</p>
+        </details>
+        <details class="group bg-gray-50 border border-slate-200 rounded-3xl p-6 open:shadow-soft transition">
+          <summary class="cursor-pointer font-bold text-brand-dark text-lg flex justify-between gap-4 list-none">O atendimento promete cura?<i class="fa-solid fa-chevron-down group-open:rotate-180 transition"></i></summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">Não. O atendimento é apresentado de forma responsável, sem prometer cura, prazo fixo ou resultado garantido. Cada caso precisa ser avaliado individualmente.</p>
+        </details>
+        <details class="group bg-gray-50 border border-slate-200 rounded-3xl p-6 open:shadow-soft transition">
+          <summary class="cursor-pointer font-bold text-brand-dark text-lg flex justify-between gap-4 list-none">Por que chamar pelo WhatsApp?<i class="fa-solid fa-chevron-down group-open:rotate-180 transition"></i></summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">O WhatsApp permite uma conversa inicial rápida, facilita a orientação do caso e ajuda a entender o melhor próximo passo.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="py-20 bg-brand text-white text-center relative overflow-hidden">
+    <div class="hero-orb w-96 h-96 bg-white/40 -top-36 right-10"></div>
+    <div class="max-w-4xl mx-auto px-5 md:px-6 relative z-10">
+      <span class="inline-flex items-center gap-2 text-blue-100 font-bold bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6"><i class="fa-solid fa-calendar-check"></i> Próximo passo</span>
+      <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6">Quer entender se a hipnoterapia faz sentido para o seu caso?</h2>
+      <p class="text-xl text-blue-100 mb-10 leading-relaxed">Clique abaixo e envie uma mensagem direta. A conversa inicial ajuda a orientar o melhor caminho com segurança e clareza.</p>
+
+      <div class="bg-white rounded-3xl p-5 md:p-7 shadow-2xl text-left max-w-2xl mx-auto mb-8">
+        <label for="nome" class="block text-sm font-bold text-slate-700 mb-2">Seu nome</label>
+        <input id="nome" type="text" placeholder="Digite seu nome" class="w-full rounded-2xl border border-slate-200 px-4 py-4 text-slate-800 outline-none focus:ring-4 focus:ring-sky-100 focus:border-brand transition mb-4" />
+        <label for="queixa" class="block text-sm font-bold text-slate-700 mb-2">Principal motivo do contato</label>
+        <select id="queixa" class="w-full rounded-2xl border border-slate-200 px-4 py-4 text-slate-800 outline-none focus:ring-4 focus:ring-sky-100 focus:border-brand transition mb-4">
+          <option>Ansiedade</option>
+          <option>Medos ou fobias</option>
+          <option>Traumas ou memórias difíceis</option>
+          <option>Autoestima ou autoconfiança</option>
+          <option>Sono e sobrecarga mental</option>
+          <option>Quero entender melhor</option>
+        </select>
+        <button id="whatsappFormBtn" class="w-full bg-[#25D366] text-white rounded-full px-8 py-4 font-extrabold text-lg hover:bg-green-600 transition shadow-lg inline-flex items-center justify-center gap-3">
+          <i class="fab fa-whatsapp text-2xl"></i> Enviar mensagem no WhatsApp
+        </button>
+        <p class="text-xs text-slate-500 mt-4 text-center">Ao clicar, o WhatsApp será aberto com uma mensagem pronta. Você pode editar antes de enviar.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://wa.me/5511973102446?text=Quero%20agendar%20uma%20conversa%20sobre%20hipnoterapia" target="_blank" rel="noopener" class="bg-white text-brand-dark px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition shadow-2xl inline-flex items-center gap-3 transform hover:scale-105">
+          <i class="fab fa-whatsapp text-green-500 text-2xl"></i> Falar agora
+        </a>
+        <a href="https://share.google/1lcah9z6ma3azPe02" target="_blank" rel="noopener" class="bg-brand-dark text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-slate-900 transition shadow-2xl inline-flex items-center gap-3 transform hover:scale-105">
+          <i class="fa-solid fa-location-dot text-brand-accent text-2xl"></i> Como chegar
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="bg-brand-dark border-t border-gray-800 text-gray-400 py-8 text-center">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        &copy; 2026 institutoeuricofranca. Todos os direitos reservados.
+        <span class="block text-xs mt-1">Hipnoterapia não substitui acompanhamento médico ou psicológico quando necessário.</span>
+      </div>
+      <div class="flex flex-col md:flex-row items-center gap-3 md:gap-5 text-sm font-semibold">
+        <a href="politica-de-privacidade.html" class="hover:text-white transition inline-flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Política de Privacidade</a>
+      </div>
+      <div class="flex space-x-6 text-xl">
+        <a href="https://www.instagram.com/euricofranca/" target="_blank" rel="noopener" class="hover:text-white transition" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@institutoeuricofranca" target="_blank" rel="noopener" class="hover:text-white transition" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/5511973102446" target="_blank" rel="noopener" class="hover:text-white transition" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://share.google/1lcah9z6ma3azPe02" target="_blank" rel="noopener" class="hover:text-white transition" aria-label="Google Maps"><i class="fa-solid fa-map-location-dot"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = '5511973102446';
+
+    function openWhatsApp(source) {
+      const nome = document.getElementById('nome')?.value?.trim() || '';
+      const queixa = document.getElementById('queixa')?.value || 'Quero entender melhor';
+      const text = nome
+        ? `Olá, meu nome é ${nome}. Vim pelo site do institutoeuricofranca e gostaria de saber mais sobre hipnoterapia. Meu principal motivo é: ${queixa}.`
+        : `Olá! Vim pelo site do institutoeuricofranca e gostaria de saber mais sobre hipnoterapia. Meu principal motivo é: ${queixa}.`;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'whatsapp_click', source });
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    }
+
+    document.getElementById('whatsappFormBtn')?.addEventListener('click', () => openWhatsApp('formulario_contato'));
+    document.getElementById('whatsappFloat')?.addEventListener('click', () => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'whatsapp_click', source: 'botao_flutuante' });
+    });
+  </script>
+</body>
+</html>
