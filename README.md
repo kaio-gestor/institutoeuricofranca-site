@@ -46,7 +46,7 @@ No HTML final, esses termos foram substituídos por linguagem pública e natural
 
 - Header fixo com navegação limpa.
 - Hero principal com mensagem focada em hipnoterapia clínica.
-- Seção de indicações: ansiedade, fobias, sono, autoestima, padrões repetitivos e traumas.
+- Seção de indicações: ansiedade, fobias, medos, autoestima, padrões repetitivos, bloqueios emocionais e traumas.
 - Seção de processo terapêutico em três etapas, sem mencionar metodologia XYZ.
 - Seção sobre Eurico Franca.
 - Seção com conteúdos do YouTube.
@@ -111,7 +111,7 @@ A seção foi padronizada para usar ícones em SVG inline, com o mesmo padrão v
 
 Categorias padronizadas:
 - Ansiedade
-- Insônia
+- Fobias específicas
 - Fobias
 - Baixa autoestima
 - Compulsões
@@ -224,3 +224,13 @@ O logo do cabeçalho foi ajustado para remover o fundo circular preenchido. Agor
 ## Ajuste visual do logo
 
 O cabeçalho usa o arquivo `assets/img/logo-instituto.svg` com fallback para PNG. O logo recebeu fundo radial translúcido com blur, borda em degradê pulsante e sombra suave para parecer integrado às cores do banner/cabeçalho sem criar um círculo sólido atrás da marca.
+
+
+## Atualização aplicada — julho de 2026
+
+- Removido o foco em sono/insônia da comunicação pública.
+- Reforçada a presença de fobias, medos específicos e respostas automáticas.
+- Ordem recomendada da página aplicada: hero, indicações, processo, avaliações, instituto, especialista, conteúdos, FAQ, contato e rodapé.
+- Meta tags SEO, Open Graph, Twitter Card, canonical, favicon e schema JSON-LD adicionados/ajustados.
+- FAQ ampliado para responder objeções sobre fobias, perda de controle, promessa de cura, número de sessões e WhatsApp.
+- Política de Privacidade recebeu meta tags, canonical e schema próprio.
